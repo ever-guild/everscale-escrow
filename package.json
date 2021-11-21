@@ -1,0 +1,14 @@
+{
+  "name": "everscale-escrow",
+  "version": "1.0.0-beta.0",
+  "description": "Escrow contract on Everscale",
+  "repository": "git@github.com:ilyar/everscale-escrow.git",
+  "license": "Unlicense",
+  "dependencies": {
+    "tondev": "^0.10.5"
+  },
+  "scripts": {
+    "postinstall": "tondev tonos-cli install",
+    "test": "bash test.sh"
+  }
+}
