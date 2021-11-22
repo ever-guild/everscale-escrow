@@ -89,7 +89,7 @@ contract Escrow {
         address payee,
         address releaser,
         uint256 amount
-    ) public pure returns (uint256) {
+    ) private pure returns (uint256) {
         TvmBuilder builder;
         builder.store(payer, payee, releaser, amount);
         return tvm.hash(builder.toCell());

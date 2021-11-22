@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
 npx tondev se reset &> /dev/null
-npx tonos-cli config --url localhost &> /dev/null
 rm -fr *.abi.json *.tvc
 
-. util.sh
+. util/util.sh
 
 createWallet alice
 createWallet bob

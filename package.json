@@ -8,7 +8,9 @@
     "tondev": "^0.10.5"
   },
   "scripts": {
-    "postinstall": "tondev tonos-cli install",
+    "setup-se": "bash util/setup-se.sh",
+    "setup-tondev": "tondev se update && tondev tonos-cli update && tondev ts4 update && tondev sol update",
+    "postinstall": "yarn setup-tondev && yarn setup-se",
     "test": "bash test.sh"
   }
 }
