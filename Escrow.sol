@@ -14,7 +14,7 @@ contract Escrow {
         address payer,
         address payee,
         address releaser,
-        uint256 amount
+        uint128 amount
     );
 
     mapping(uint256 => bool) private _releaseList;
@@ -29,14 +29,14 @@ contract Escrow {
     external
     payable
     {
-        require(msg.value > 0, 1000, "Escrow: Must be more zero");
+        require(msg.value > 0, 1001, "Escrow: Must be more zero");
         uint256 escrowId = _createEscrowId(
             msg.sender,
             payee,
             releaser,
             msg.value
         );
-        require(!_releaseList[escrowId], 1000, "Escrow: Not released");
+        require(!_releaseList[escrowId], 1002, "Escrow: Not released");
         _releaseList[escrowId] = true;
         emit EscrowStatus(
             Status.Opened,
@@ -77,10 +77,10 @@ contract Escrow {
         address payer,
         address payee,
         address releaser,
-        uint256 amount
+        uint128 amount
     ) private {
         uint256 escrowId = _createEscrowId(payer, payee, releaser, amount);
-        require(_releaseList[escrowId], 1000, "Escrow: Not find release");
+        require(_releaseList[escrowId], 1003, "Escrow: Not find release");
         delete _releaseList[escrowId];
     }
 
@@ -88,7 +88,7 @@ contract Escrow {
         address payer,
         address payee,
         address releaser,
-        uint256 amount
+        uint128 amount
     ) private pure returns (uint256) {
         TvmBuilder builder;
         builder.store(payer, payee, releaser, amount);
