@@ -56,7 +56,7 @@ contract Escrow {
     external
     {
         _release(payer, payee, msg.sender, amount);
-        payee.transfer(amount, true, 3);
+        payee.transfer({value: amount, flag: 1, bounce: true});
         emit EscrowStatus(Status.Closed, payer, payee, msg.sender, amount);
     }
 
@@ -69,7 +69,7 @@ contract Escrow {
     external
     {
         _release(msg.sender, payee, releaser, amount);
-        msg.sender.transfer(amount, true, 3);
+        msg.sender.transfer({value: amount, flag: 0, bounce: true});
         emit EscrowStatus(Status.Refunded, msg.sender, payee, releaser, amount);
     }
 
